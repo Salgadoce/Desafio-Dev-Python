@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+import datetime
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
@@ -13,6 +14,7 @@ with sync_playwright() as p:
     with page.expect_download() as download_info:
         btn.click()
     download = download_info.value
-    download.save_as("esperados.csv")
+    data_hoje = datetime.date.today()
+    download.save_as(rf"esperados_{data_hoje}.csv")
 
     browser.close()

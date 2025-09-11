@@ -41,16 +41,17 @@ for row in column_data[2:]:
     
 df = pd.DataFrame(dados_processados, columns=limpo)
 
-
 data_hoje = datetime.date.today()
-caminho = rf'C:\Users\julio\OneDrive\Área de Trabalho\lineup\dados brutos\paranagua_dados{data_hoje}.csv'
-df.to_csv(caminho, index=False, sep=';', encoding='utf-8-sig')
+caminho = rf'C:\Users\julio\OneDrive\Área de Trabalho\lineup\dados brutos\paranagua_dados{data_hoje}.xlsx'
+
+df.to_excel(caminho, index=False)
 
 print("salvo com sucesso em:", caminho)
 
 
 
-#df.to_csv(r'C:\Users\julio\OneDrive\Área de Trabalho\Nova pasta (2)\dados.csv')
+
+
 
 
 
