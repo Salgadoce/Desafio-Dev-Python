@@ -53,7 +53,7 @@ def scrape_paranagua_data(directory_path: str) -> str:
     
     return save_path
 
-# Bloco para permitir execução individual para testes
+
 if __name__ == '__main__':
     temp_dir = os.path.join(os.path.dirname(__file__), 'temp')
     os.makedirs(temp_dir, exist_ok=True)

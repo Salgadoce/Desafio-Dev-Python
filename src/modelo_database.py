@@ -1,5 +1,3 @@
-# /src/modelo_database.py
-
 from sqlalchemy import create_engine, text
 
 def setup_database(db_url_base: str, db_name: str):
@@ -12,7 +10,7 @@ def setup_database(db_url_base: str, db_name: str):
     """
     print(f"--- Configurando Banco de Dados: '{db_name}' ---")
     
-    # --- Etapa 1: Criar o Banco de Dados se ele não existir ---
+    
     try:
         engine_base = create_engine(db_url_base)
         with engine_base.connect() as connection:
@@ -23,7 +21,7 @@ def setup_database(db_url_base: str, db_name: str):
         print(f"Erro ao criar o banco de dados: {e}")
         raise
 
-    # --- Etapa 2: Definir os Schemas das Tabelas ---
+    
     sql_create_table_paranagua = """
     CREATE TABLE IF NOT EXISTS navios_paranagua (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -86,7 +84,7 @@ def setup_database(db_url_base: str, db_name: str):
     );
     """
 
-    # --- Etapa 3: Criar as Tabelas se elas não existirem ---
+    
     try:
         db_connection_string = f"{db_url_base}/{db_name}"
         engine_db = create_engine(db_connection_string)
@@ -105,7 +103,7 @@ def setup_database(db_url_base: str, db_name: str):
     print("--- Configuração do Banco de Dados concluída ---\n")
 
 
-# Bloco para permitir execução individual para testes
+
 if __name__ == '__main__':
     DB_URL_BASE_TEST = "mysql+pymysql://root:mysqldb@localhost"
     DB_NAME_TEST = "paranagua"

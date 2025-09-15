@@ -5,7 +5,8 @@ import traceback
 import os
 
 def clean_data_paranagua(row):
-    # (A função de clean_data permanece a mesma, apenas renomeada para clareza)
+
+
     cleaned = {}
     cleaned['programacao'] = int(row['Programação']) if pd.notna(row['Programação']) else None
     cleaned['imo'] = int(row['IMO']) if pd.notna(row['IMO']) else None

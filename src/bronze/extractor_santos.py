@@ -27,7 +27,7 @@ def extract_santos_data(directory_path: str) -> str:
         download = download_info.value
         
         data_hoje = datetime.date.today()
-        # Usa o nome do download original para mais robustez e adiciona a data
+        
         suggested_filename = download.suggested_filename
         file_name = f"santos_{data_hoje}_{suggested_filename}"
         
@@ -37,10 +37,8 @@ def extract_santos_data(directory_path: str) -> str:
         
         return save_path
 
-# Bloco para permitir execução individual para testes
 if __name__ == '__main__':
-    # Exemplo de como chamar a função diretamente
-    # Cria uma pasta 'temp' para salvar o arquivo de teste
+    
     temp_dir = os.path.join(os.path.dirname(__file__), 'temp')
     os.makedirs(temp_dir, exist_ok=True)
     file_path = extract_santos_data(temp_dir)

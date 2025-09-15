@@ -1,30 +1,25 @@
-# /projeto_portos/main.py
-
 import os
 import datetime
 import sys
 
-# Adiciona o diretório 'src' ao path do Python
+
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-# Importa as funções de cada etapa do pipeline
-from src.modelo_database import setup_database # <-- ADICIONADO
+
+from src.modelo_database import setup_database 
 from bronze.extractor_santos import extract_santos_data
 from bronze.scrape_paranagua import scrape_paranagua_data
 from silver.inserir_paranagua import insert_paranagua_data
 from silver.inserir_santos import insert_santos_data
 from gold.agregados import run_aggregation
 
-# --- CONFIGURAÇÃO CENTRALIZADA ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BRONZE_DATA_PATH = os.path.join(BASE_DIR, 'data', 'bronze')
 os.makedirs(BRONZE_DATA_PATH, exist_ok=True)
 
-# Configurações de Banco de Dados separadas para mais clareza
 DB_URL_BASE = "mysql+pymysql://root:mysqldb@localhost"
 DB_NAME = "lineup"
 DB_CONNECTION_STR = f"{DB_URL_BASE}/{DB_NAME}"
-# ------------------------------------
 
 def run_pipeline():
 

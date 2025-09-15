@@ -1,6 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
+
 def run_aggregation(db_connection_str: str):
     """
     Lê os dados das tabelas de Paranaguá e Santos, unifica, padroniza e
@@ -20,7 +21,7 @@ def run_aggregation(db_connection_str: str):
         df_pna = pd.read_sql(query_pna, engine)
         df_santos = pd.read_sql(query_santos, engine)
 
-        # --- Padronização e Expansão ---
+        
         df_pna['porto'] = 'Paranaguá'
         df_pna.rename(columns={'eta': 'data_viagem'}, inplace=True)
         pna_sentido_map = {'imp': ['Importação'], 'exp': ['Exportação'], 'imp/exp': ['Importação', 'Exportação']}
@@ -35,12 +36,12 @@ def run_aggregation(db_connection_str: str):
         df_santos.dropna(subset=['sentido'], inplace=True)
         df_santos = df_santos.explode('sentido')
 
-        # --- Unificação ---
+        
         colunas_finais = ['porto', 'embarcacao', 'mercadoria', 'sentido', 'data_viagem']
         df_agregado = pd.concat([df_pna[colunas_finais], df_santos[colunas_finais]], ignore_index=True)
         df_agregado.dropna(subset=['mercadoria', 'embarcacao', 'data_viagem'], inplace=True)
         
-        # --- Carga ---
+       
         print(f"Total de {len(df_agregado)} viagens individuais para inserir na tabela agregada.")
         df_agregado.to_sql(tabela_destino, con=engine, if_exists='replace', index=False)
         

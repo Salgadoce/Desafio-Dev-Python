@@ -1,11 +1,9 @@
-# /src/silver/inserir_santos_2_.py
 import pandas as pd
 from sqlalchemy import create_engine, text
 import unicodedata
 import os
 import traceback
 
-# --- Funções Auxiliares ---
 def normalize_text(text_data):
     if pd.isnull(text_data): return None
     text_data = str(text_data)
@@ -34,7 +32,6 @@ def insert_santos_data(csv_file_path: str, db_connection_str: str):
         print(f"Ocorreu um erro ao ler o arquivo CSV de Santos: {e}")
         raise
 
-    # --- Limpeza e Transformação ---
     col_names = ['navio', 'bandeira', 'com_cal', 'nav', 'chegada', 'carimbo', 'agencia', 'operacao', 'mercadoria', 'peso', 'viagem', 'duv', 'p', 'terminal', 'imo']
     if len(df.columns) != len(col_names):
         print(f"Erro: O número de colunas no CSV de Santos ({len(df.columns)}) não corresponde ao esperado ({len(col_names)}).")
@@ -60,7 +57,6 @@ def insert_santos_data(csv_file_path: str, db_connection_str: str):
     df_final.drop_duplicates(subset=['navio', 'viagem'], keep='first', inplace=True)
     print(f"{len(df_final)} linhas válidas e únicas para inserir/atualizar em Santos.")
 
-    # --- Carga no Banco de Dados ---
     engine = create_engine(db_connection_str)
     
     try:

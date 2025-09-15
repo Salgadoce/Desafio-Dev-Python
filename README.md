@@ -42,6 +42,7 @@ O pipeline é dividido da seguinte maneira:
 |-- main.py
 |-- requirements.txt
 |-- README.md
+|-- dicionário.md
 
 ````
 
