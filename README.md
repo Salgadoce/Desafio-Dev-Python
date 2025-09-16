@@ -4,8 +4,8 @@ Este projeto implementa um pipeline de dados para coletar, processar e unificar 
 
 ## Funcionalidades
 
-* **Extração Automática**: Coleta de dados diretamente dos sites oficiais dos portos via web scraping e automação de navegador.
-Santos: https://www.portodesantos.com.br/informacoes-operacionais/operacoes-portuarias/navegacao-e-movimento-de-navios/navios-esperados-carga/
+* **Extração Automática**: Coleta de dados diretamente dos sites oficiais dos portos via web scraping e automação de navegador.<br>
+Santos: https://www.portodesantos.com.br/informacoes-operacionais/operacoes-portuarias/navegacao-e-movimento-de-navios/navios-esperados-carga/<br>
 Paranaguá: https://www.appaweb.appa.pr.gov.br/appaweb/pesquisa.aspx?WCI=relLineUpRetroativo
 * **Setup Automatizado do Banco de Dados**: O pipeline verifica e cria o banco de dados e as tabelas necessárias na primeira execução.
 * **Estrutura de Camadas**: O projeto utiliza a arquitetura Medallion (Bronze, Silver, Gold). 
@@ -29,13 +29,13 @@ O pipeline é dividido da seguinte maneira:
 |-- data/
 |   |-- bronze/
 |-- src/
-|   |-- modelo\_database.py
+|   |-- modelo_database.py
 |   |-- bronze/
-|   |   |-- extractor\_santos.py
-|   |   |-- scrape\_paranagua.py
+|   |   |-- extractor_santos.py
+|   |   |-- scrape_paranagua.py
 |   |-- silver/
-|   |   |-- inserir\_paranagua.py
-|   |   |-- inserir\_santos\_2\_.py
+|   |   |-- inserir_paranagua.py
+|   |   |-- inserir_santos.py
 |   |-- gold/
 |   |   |-- agregados.py
 |
