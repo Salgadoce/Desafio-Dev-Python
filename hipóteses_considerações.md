@@ -30,3 +30,10 @@ Este documento descreve as principais hipóteses, decisões de design e consider
 
 * **Estratégia de Atualização `REPLACE`**: A tabela final `agregado_mercadoria_sentido` é completamente reconstruída a cada execução do pipeline (`if_exists='replace'`). Esta abordagem foi escolhida pela simplicidade. Para volumes de dados muito grandes no futuro, uma estratégia de carga incremental poderia ser considerada.
 * **Diferenciação de Viagens**: A premissa adotada é que registros com `(embarcacao, mercadoria, sentido)` idênticos representam viagens distintas se possuírem uma (`data_viagem`) diferente. A data foi considerada o elemento chave para diferenciar eventos de negócio. 
+
+## 6. Análise e Apresentação dos Dados
+
+* **Indicadores**: As análises geradas (contagem por porto, top mercadorias, etc.) representam um conjunto selecionado de indicadores chave (KPIs) para uma visão geral da operação. Novas análises podem ser desenvolvidas conforme a necessidade.
+* **Fonte da Verdade**: Todas as consultas do script de análise são executadas exclusivamente sobre a tabela `agregado_mercadoria_sentido`.
+* **Hipótese de "Top Mercadorias"**: A análise das mercadorias mais relevantes utiliza a **frequência de viagens (`COUNT(*)`)** como critério de ranqueamento. 
+* **Formato de Saída**: Os resultados das análises são apresentados em formato de tabela diretamente no console.

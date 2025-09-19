@@ -12,6 +12,7 @@ from bronze.scrape_paranagua import scrape_paranagua_data
 from silver.inserir_paranagua import insert_paranagua_data
 from silver.inserir_santos import insert_santos_data
 from gold.agregados import run_aggregation
+from gold.analise_dados import run_analysis
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BRONZE_DATA_PATH = os.path.join(BASE_DIR, 'data', 'bronze')
@@ -51,6 +52,10 @@ def run_pipeline():
         
         run_aggregation(DB_CONNECTION_STR)
         print("Tabela de agregados criada/atualizada com sucesso.\n")
+
+        print("--- Etapa de análise: Gerando Resumo dos Dados ---")
+        run_analysis(DB_CONNECTION_STR)
+        print("Análise concluida.\n")
 
         
         print("PIPELINE CONCLUÍDO COM SUCESSO!")
